@@ -1,0 +1,122 @@
+[
+  {
+    "id": "about",
+    "category": "about",
+    "source": "about",
+    "content": "name:\n  Pratham Tiwari\nrole:\n  Computer Engineering student\ncurrent_status:\n  Third-year undergraduate\ninstitution:\n  International Institute of Information Technology, Pune\none_liner:\n  I like building practical systems and understanding how things work by implementing them.\nshort_intro:\n  Pratham Tiwari is a Computer Engineering student who focuses on learning through hands-on project development.\nlearning_style:\n  Project-based learning through implementation and experimentation.\ncurrent_focus:\n  Learning AI/ML, neural networks, and llms."
+  },
+  {
+    "id": "beliefs",
+    "category": "philosophy",
+    "source": "philosophy",
+    "content": "core_beliefs:\n  Strong fundamentals matter more than memorizing tools or frameworks\n  Understanding improves when ideas are implemented\n  Systems should remain simple while being scalable and useful\nproblem_solving_style:\n  Start by clarifying the problem, break it into smaller parts, identify the root cause, and iterate on solutions instead of aiming for a perfect first version.\nlearning_principle:\n  Begin with basics, build small working examples, observe limitations, and refine understanding through repeated improvement."
+  },
+  {
+    "id": "education_0",
+    "category": "education",
+    "source": "education",
+    "content": "degree:\n  Bachelor of Technology\nfield:\n  Computer Engineering\ninstitution:\n  International Institute of Information Technology, Pune\nstatus:\n  Third year (ongoing)\nnotes:\n  Coursework includes core computer engineering subjects and practical software development."
+  },
+  {
+    "id": "skills",
+    "category": "skills",
+    "source": "skills",
+    "content": "technical:\n  name:\n    AI / Machine Learning\n  level:\n    Intermediate\n  notes:\n    Experience with neural networks and currently learning large language models through projects.\n  name:\n    Full Stack Web Development\n  level:\n    Intermediate\n  notes:\n    Able to build end-to-end web applications and integrate frontend, backend, and databases.\nprogramming_languages:\n  Python\n  JavaScript\n  C++\n  Dsa in Java\nframeworks_and_stacks:\n  MERN Stack\ndatabases:\n  MongoDB\n  MySQL\ntools:\n  Docker\n  Unity\n  Blender"
+  },
+  {
+    "id": "project_0_climashield",
+    "category": "project",
+    "source": "project",
+    "content": "name:\n  ClimaShield\ntimeline:\n  Nov - Dec 2025\ncontext:\n  Developed during the PCCOE IGC 2026 Hackathon. Cleared the first round with an idea and presentation and built a working prototype for the second round. Final round results are pending.\nobjective:\n  To predict climate-related risks before they occur and provide early guidance to individuals and communities.\ncurrent_status:\n  Working prototype\nimplemented_features:\n  7-day weather prediction\n  Prediction of 7 different climate-related disasters using separate neural network models\n  Disease risk estimation linked to climate conditions\n  Location-based and personalized advisory system\n  AI assistant to explain risks and suggested actions\n  Background monitoring agent that continuously evaluates climate conditions and triggers alerts\nconcept_or_partial_features:\n  Community-level alert distribution system\ntechnical_approach:\n  Used multiple neural networks, each trained for a specific disaster type, combined with application-level logic to generate predictions and advisories. A background agent monitors conditions continuously and interacts with users through alerts and an AI assistant.\ntech_stack:\n  frontend:\n    React Native (Expo)\n  authentication_and_alerts:\n    Firebase\n  machine_learning:\n    TensorFlow\n  language_model_for_advice:\n    LLaMA\n  backend:\n    Python and Node.js\n  apis:\n    Flask-based APIs\nkey_challenges:\n  Lack of clean and reliable real-world datasets for disaster prediction\n  Training and validating neural networks with limited data\n  Integrating multiple models into a single application workflow\ndata_strategy:\n  Used synthetic data to train neural network models due to the unavailability of suitable real-world datasets.\nlearning_outcomes:\n  Data quality strongly influences model performance\n  System integration is as important as individual model accuracy\n  Early-warning systems require careful balance between prediction confidence and usability\nlinks:\n  https://github.com/Pratham9911/ClimaShield"
+  },
+  {
+    "id": "project_1_infinityar",
+    "category": "project",
+    "source": "project",
+    "content": "name:\n  InfinityAR\ntimeline:\n  Feb–Apr 2025\ncontext:\n  Developed as part of a second-year Project Based Learning (PBL) course, where teams were required to design and complete a project within a fixed academic deadline.\nobjective:\n  To explore the use of augmented reality for improving visualization and engagement in educational content.\ncurrent_status:\n  Working prototype\nimplemented_features:\n  Augmented reality visualization of all planets in the solar system\n  Interactive 3D planet models viewable in AR\n  Marker-based AR using target images to render 3D content\n  Support for low-end Android devices\n  Basic educational events and information linked to planetary objects\nconcept_or_partial_features:\n  Integration of the system into school education using customized textbooks as AR targets\ntechnical_approach:\n  Built a marker-based augmented reality application where users point their mobile device at a predefined image target to render and interact with 3D planetary models. The focus was on maintaining performance while enabling interaction on low-end devices.\ntech_stack:\n  game_engine:\n    Unity 3D\n  programming_language:\n    C#\n  3d_modeling:\n    Blender\n  platform:\n    Android\n  development_tools:\n    Android Studio\n  backend_services:\n    Firebase\nkey_challenges:\n  Learning multiple new tools and frameworks within a short timeframe\n  Optimizing AR performance for low-end mobile devices\n  Managing coordination and task division within a team project\nlearning_outcomes:\n  Hands-on experience with augmented reality development\n  Improved ability to learn unfamiliar tools through experimentation\n  Understanding performance constraints in mobile AR applications\nrecognition:\n  The project idea was later presented in the college Entrepreneurship Challenge, where it won twice for its educational application concept.\nlinks:\n  https://infinityar.vercel.app/"
+  },
+  {
+    "id": "project_2_alumniconnect",
+    "category": "project",
+    "source": "project",
+    "content": "name:\n  AlumniConnect\ntimeline:\n  Aug 2025 – Present\ncontext:\n  Started as a personal project inspired by Smart India Hackathon 2024 problem statement (PS-1633). The goal was to build a real-world alumni–student interaction platform with additional practical features beyond the original problem scope.\nobjective:\n  To create a platform that enables student guidance, alumni mentorship, and professional networking in a secure and interactive manner.\ncurrent_status:\n  Early-stage development (ongoing)\nimplemented_features:\n  User profile creation\n  Real-time one-to-one chat functionality\n  Basic networking between users\nin_progress_features:\n  Posting and sharing achievements\n  Mentorship groups and structured interactions\n  AI assistant for tracking user goals and progress\nconcept_or_planned_features:\n  Explainable AI-based matching system to connect students with suitable alumni and provide reasons for the match\ntechnical_approach:\n  Developed as a web-based platform while learning and applying the MERN stack. Core user interaction features were implemented first, with plans to incrementally add AI-driven components for mentorship and matching.\ntech_stack:\n  frontend:\n    Web application\n  backend:\n    Node.js and Express\n  database:\n    MongoDB\n  authentication:\n    Firebase\n  ai_components:\n    Python (planned for AI and explainable matching logic)\nkey_challenges:\n  Designing a meaningful mentorship and guidance workflow\n  Learning and applying explainable AI techniques for user matching\n  Balancing feature development with research to keep the system unique\nlearning_outcomes:\n  Hands-on experience with full-stack web development using the MERN stack\n  Understanding the challenges of designing scalable social platforms\n  Early exposure to explainable AI concepts and their practical constraints\nlinks:\n  https://alumniconnect-teal.vercel.app/"
+  },
+  {
+    "id": "project_3_rag-based_personal_portfolio",
+    "category": "project",
+    "source": "project",
+    "content": "name:\n  RAG-based Personal Portfolio\ntimeline:\n  Dec 2025\ncontext:\n  Started after attending a discussion where AI interns shared their experiences. One of them mentioned using a chatbot to explain their profile, which inspired the idea of building a portfolio that can explain itself using AI.\nobjective:\n  To build a personal portfolio that can answer questions about skills, projects, and experience using a retrieval-based AI system.\ncurrent_status:\n  Working prototype\nimplemented_features:\n  Structured personal portfolio stored as data instead of static pages\n  Retrieval-based question answering over personal profile and projects\n  AI-generated explanations about background, skills, and work\n  Project-wise information retrieval with controlled responses\nconcept_or_partial_features:\n  Continuous improvement of responses based on better data structuring\n  Expanding conversational abilities beyond portfolio information\ntechnical_approach:\n  Built a retrieval-augmented generation system where structured portfolio data is retrieved and passed to a language model to generate accurate and context-aware responses about the profile.\ntech_stack:\n  frontend:\n    Next.js\n  backend:\n    Node.js\n  language_model:\n    LLaMA\n  architecture:\n    Retrieval-Augmented Generation (RAG)\nkey_challenges:\n  Designing a clean and non-redundant data structure for personal information\n  Preventing over-claiming or hallucinated responses by the AI\n  Routing user queries to the correct portfolio sections\nlearning_outcomes:\n  Understanding how RAG systems behave with structured personal data\n  Importance of precise data design for controllable AI responses\n  Practical experience in building AI-driven personal tools\nlinks:"
+  },
+  {
+    "id": "challenge_0",
+    "category": "challenge",
+    "source": "challenge",
+    "content": "context:\n  Learning and building with unfamiliar technologies\ndifficulty:\n  Many projects involved tools and domains that were completely new, which led to frequent failures and unexpected behavior during development.\nhow_it_affected_me:\n  Progress was slow at times and often required restarting parts of the implementation after long debugging sessions.\nhow_i_handled_it:\n  Reduced scope and complexity by first building smaller prototypes or following focused tutorials, then gradually expanding toward the full system.\nwhat_i_learned:\n  Breaking complex goals into smaller working parts makes learning faster and reduces repeated failures."
+  },
+  {
+    "id": "challenge_1",
+    "category": "challenge",
+    "source": "challenge",
+    "content": "context:\n  Early AI and neural network experimentation\ndifficulty:\n  Initial models performed poorly due to limited data quality and incomplete understanding of training and evaluation.\nhow_it_affected_me:\n  Results were frustrating and did not match expectations despite significant time investment.\nhow_i_handled_it:\n  Shifted focus to fundamentals such as data preparation, model evaluation, and testing on smaller datasets before scaling.\nwhat_i_learned:\n  Model performance depends more on data quality and understanding than on model complexity."
+  },
+  {
+    "id": "challenge_2",
+    "category": "challenge",
+    "source": "challenge",
+    "content": "context:\n  Time-bounded academic and hackathon projects\ndifficulty:\n  Strict deadlines limited the ability to explore multiple approaches or fully refine implementations.\nhow_it_affected_me:\n  Some features had to be simplified or postponed to meet submission timelines.\nhow_i_handled_it:\n  Prioritized core functionality and delivered working prototypes instead of attempting complete systems.\nwhat_i_learned:\n  Delivering a stable core system is more valuable than attempting too many features under time pressure."
+  },
+  {
+    "id": "journey",
+    "category": "journey",
+    "source": "journey",
+    "content": "starting_point:\n  Started college with limited exposure to practical technology and focused mainly on academic theory.\nearly_phase:\n  Learned basic technical concepts by observing peers, self-study, and trying to understand how real systems are built.\nexploration_phase:\n  Explored different technical domains to identify areas of interest\n  Found initial interest in web development through hands-on practice\n  Later developed a stronger interest in artificial intelligence\nkey_turning_points:\n  Building real projects instead of limiting learning to coursework\n  Participating in events, hackathons, and competitions to test skills\ncurrent_stage:\n  More focused on system-level thinking, integration of technologies, and applying AI to real-world problems."
+  },
+  {
+    "id": "interests",
+    "category": "interests",
+    "source": "interests",
+    "content": "technical:\n  AI ML\n  System design\n  Web development\n  Augmented reality\n  Emerging technologies\nnon_technical:\n  space exploration\n  Swimming\n  Football\n  Animation"
+  },
+  {
+    "id": "achievement_0",
+    "category": "achievement",
+    "source": "achievement",
+    "content": "time:\n  Feb 2025 and Oct 2025\ntitle:\n  Entrepreneurship Challenge Winner (2 times)\ndescription:\n  Won first place twice in college-level entrepreneurship challenges for the InfinityAR project. Each competition involved approximately 60–70 participating teams, with around 10 teams selected as winners."
+  },
+  {
+    "id": "achievement_1",
+    "category": "achievement",
+    "source": "achievement",
+    "content": "time:\n  Apr 2025\ntitle:\n  AlgoArena Coding Competition – 2nd Place\ndescription:\n  Secured second place in AlgoArena 2025 as part of a three-member team. The event was organized by the I2IT ACM chapter in collaboration with ACM-W chapters from MIT-WPU, DY Patil, and MIT-ADT. The competition included multiple rounds focused on algorithmic problem-solving, team collaboration, and solution presentation."
+  },
+  {
+    "id": "current_focus",
+    "category": "current_focus",
+    "source": "current_focus",
+    "content": "what_i_am_building_now:\n  Learning and experimenting with neural networks and large language models while building small prototypes and project features.\nwhat_i_am_learning_now:\n  Neural networks\n  Large language models\n  System-level design for AI applications\nother_activities:\n  Participating in hackathons\n  Seeking internship opportunities"
+  },
+  {
+    "id": "future_goals",
+    "category": "future_goals",
+    "source": "future_goals",
+    "content": "short_term:\n  Strengthen AI and system design skills through practical projects.\nlong_term:\n  Work on meaningful AI-driven products that combine intelligence, usability, and social impact.\ntype_of_work_i_want_to_do:\n  Building intelligent systems, AI-powered applications, and technology that solves real problems."
+  },
+  {
+    "id": "why_hire_me",
+    "category": "why_hire_me",
+    "source": "why_hire_me",
+    "content": "strengths:\n  Strong fundamentals mindset\n  Ability to learn quickly\n  System-level thinking\n  Honest about limitations and eager to improve\nwhat_makes_me_different:\n  Pratham focuses on understanding problems deeply and building thoughtful solutions rather than chasing trends or superficial features.\nwhat_i_value_in_a_team:\n  Clear thinking, collaboration, curiosity, and a shared desire to build meaningful technology."
+  },
+  {
+    "id": "work_preferences",
+    "category": "work_preferences",
+    "source": "work_preferences",
+    "content": "open_to:\n  remote or only in pune  \n  Internship opportunities\n  AI-focused projects\n  Research-oriented collaborations\n  Product-building teams"
+  },
+  {
+    "id": "contact",
+    "category": "contact",
+    "source": "contact",
+    "content": "email:\n  prathamtiwari0123@gmail.com\nprofiles:\n  linkedin:\n    https://www.linkedin.com/in/pratham-tiwari-29a82b315/\n  github:\n    https://github.com/Pratham9911\n  dev:\n    https://dev.to/pratham_tiwari_c91ad0eae4\n  instagram:\n    https://www.instagram.com/prathamtiwari9911/"
+  }
+]

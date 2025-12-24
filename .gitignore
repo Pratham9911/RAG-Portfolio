@@ -1,0 +1,26 @@
+# Node
+node_modules/
+
+# Env
+.env
+.env.local
+
+# Next.js
+rag-portfolio/.next/
+rag-portfolio/out/
+
+# RAG artifacts (frontend)
+rag-portfolio/rag/data/
+rag-portfolio/rag/chunks/
+
+# ML / Embeddings (backend only)
+rag-server/rag/models/
+rag-server/rag/cache/
+rag-server/rag/data/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

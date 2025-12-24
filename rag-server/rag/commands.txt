@@ -1,0 +1,5 @@
+
+node rag/scripts/buildChunks.js
+
+node rag/embeddings/buildVectors.js
+
