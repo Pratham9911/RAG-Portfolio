@@ -8,6 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ REQUIRED health check
+app.get("/", (req, res) => {
+  res.send("RAG backend is alive");
+});
+
 app.post("/ask", async (req, res) => {
   try {
     const { query, mode } = req.body;
@@ -25,4 +30,3 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`RAG server running on port ${PORT}`);
 });
-
