@@ -20,3 +20,8 @@
 //   });
 //   return Array.from(output.data);
 // }
+export async function embedText(text) {
+  throw new Error(
+    "Embedding not available. Use precomputed vectors only."
+  );
+}
