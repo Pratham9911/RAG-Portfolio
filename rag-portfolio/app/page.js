@@ -72,7 +72,7 @@ export default function Page() {
     <div className="relative hidden lg:block">
       <div className="bg-black relative h-[520px] rounded-2xl overflow-hidden">
         <Image
-          src="/My.jpg"
+          src="/Pratham.jpg"
           alt="Pratham Tiwari"
           fill
           priority
