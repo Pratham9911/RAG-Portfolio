@@ -43,7 +43,7 @@ export default function Page() {
       <div className="mt-8 lg:hidden flex justify-center">
         <div className="relative w-[260px] sm:w-[300px] aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
           <Image
-            src="/Pratham.jpg"
+            src="/PrathamImage.jpg"
             alt="Pratham Tiwari"
             fill
             priority
@@ -72,7 +72,7 @@ export default function Page() {
     <div className="relative hidden lg:block">
       <div className="bg-black relative h-[520px] rounded-2xl overflow-hidden">
         <Image
-          src="/Pratham.jpg"
+          src="/My.jpg"
           alt="Pratham Tiwari"
           fill
           priority
