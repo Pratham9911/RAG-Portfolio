@@ -3,9 +3,16 @@
 > What if visitors could talk to my portfolio instead of just reading it?
 
 An **AI-powered personal portfolio website** where a chatbot answers questions about me — my education, interests, projects, and work — **the way I would**.
+<p align="center">
+  🔗 <strong>Live Website:</strong><br>
+  <a href="https://pratham-tiwari.vercel.app" target="_blank">
+    https://pratham-tiwari.vercel.app
+  </a>
+</p>
 
-🔗 **Live Website:**  
-https://pratham-tiwari.vercel.app
+<p align="center">
+  <img src="rag-portfolio/public/assets//ragportfolio/Dashboard.png "  width="100%">
+</p>
 
 ---
 
@@ -25,7 +32,14 @@ And the AI responds **accurately, honestly, and in the right tone**.
 
 ---
 
-## 🧠 How It Works
+## 🏗️ System Flow
+
+<p align="center">
+  <img src="rag-portfolio/public/assets/ragportfolio/RAGarchitecture.jpg " alt="Intent-Driven RAG Architecture" width="50%">
+</p>
+
+---
+How It Works
 
 This is **not** a generic chatbot.
 
@@ -60,14 +74,6 @@ The same question can produce different answers — intentionally.
 - Clarification handling for ambiguous questions
 - LLM-powered natural language understanding
 - Controlled and truthful answers
-
----
-
-## 🏗️ System Flow
-
-<p align="center">
-  <img src="rag-portfolio/public/assets/RAGarchitecture.jpg " alt="Intent-Driven RAG Architecture" width="50%">
-</p>
 
 ---
 
