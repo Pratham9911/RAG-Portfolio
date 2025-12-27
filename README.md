@@ -65,7 +65,9 @@ The same question can produce different answers — intentionally.
 
 ## 🏗️ System Flow
 
-
+<p align="center">
+  <img src="rag-portfolio/public/assets/RAGarchitecture.jpg " alt="Intent-Driven RAG Architecture" width="50%">
+</p>
 
 ---
 
