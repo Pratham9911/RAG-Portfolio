@@ -1,4 +1,4 @@
-# 🤖 RAG Portfolio — AI That Represents Me
+#  RAG Portfolio — AI That Represents Me
 
 > What if visitors could talk to my portfolio instead of just reading it?
 
@@ -87,7 +87,7 @@ This reduces hallucinations and improves trust — a common design choice in pro
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js / React  
-- **Backend:** LLM-powered intent classification & response generation  
+- **Backend:** LLM-powered intent classification , retrieval & response generation using python
 - **Prompt Engineering:** Mode-controlled prompting  
 - **Deployment:** Vercel  
 
@@ -111,15 +111,6 @@ This reduces hallucinations and improves trust — a common design choice in pro
 
 ---
 
-## 👋 About Me
-
-**Pratham Tiwari**  
-BTech Student — I2IT, Pune  
-Interested in building AI-powered products
-
-🌐 https://pratham-tiwari.vercel.app
-
----
 
 ## ⭐ Final Note
 
