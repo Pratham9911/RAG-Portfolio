@@ -60,6 +60,33 @@ export default function AiInput() {
 
  
 const [modeOpen, setModeOpen] = useState(false);
+const [agentStatus, setAgentStatus] = useState("waking");
+
+useEffect(() => {
+  let resolved = false;
+
+  fetch(process.env.NEXT_PUBLIC_API_URL, {
+    method: "GET"
+  })
+    .then(res => {
+      if (res.ok) {
+        resolved = true;
+        setAgentStatus("online");
+      } else {
+        setAgentStatus("offline");
+      }
+    })
+    .catch(() => {
+      setAgentStatus("offline");
+    });
+
+  // If still not resolved after a short time → waking up
+  setTimeout(() => {
+    if (!resolved) {
+      setAgentStatus("waking");
+    }
+  }, 3000);
+}, []);
 
   const chatRef = useRef(null);
   const textareaRef = useRef(null);
@@ -134,12 +161,63 @@ const [modeOpen, setModeOpen] = useState(false);
     <div className="hidden md:flex fixed top-20 left-6 z-50">
       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full
         bg-[#0b0b0b] border border-white/10 text-sm">
-        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-        <span className="text-zinc-300">
-          pratham-v2 <span className="text-zinc-500">/ ai-agent</span>
-        </span>
+       <span
+  className={`w-2 h-2 rounded-full animate-pulse ${
+    agentStatus === "online"
+      ? "bg-green-500"
+      : agentStatus === "waking"
+      ? "bg-yellow-500"
+      : "bg-red-500"
+  }`}
+/>
+
+<span className="text-zinc-300">
+  {agentStatus === "online" && (
+    <>
+      pratham-v2 <span className="text-zinc-500">/ ai-agent</span>
+    </>
+  )}
+
+  {agentStatus === "waking" && (
+    <>
+      AI agent waking up{" "}
+      <span className="text-zinc-500">/ please wait</span>
+    </>
+  )}
+
+  {agentStatus === "offline" && (
+    <>
+      AI agent offline{" "}
+      <span className="text-zinc-500">/ retrying</span>
+    </>
+  )}
+</span>
+
+
       </div>
     </div>
+{/* ===== MOBILE AGENT STATUS (TOP CENTER) ===== */}
+<div className="md:hidden fixed top-14 left-1/2 -translate-x-1/2 z-50">
+  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full
+    bg-[#0b0b0b] border border-white/10 text-xs">
+    
+    <span
+      className={`w-2 h-2 rounded-full animate-pulse ${
+        agentStatus === "online"
+          ? "bg-green-500"
+          : agentStatus === "waking"
+          ? "bg-yellow-500"
+          : "bg-red-500"
+      }`}
+    />
+
+    <span className="text-zinc-300 whitespace-nowrap">
+      {agentStatus === "online" && "Agent Online"}
+      {agentStatus === "waking" && "Agent Waking Up…"}
+      {agentStatus === "offline" && "Agent Offline"}
+    </span>
+  </div>
+</div>
 
     {/* ===== CHAT (SCROLLS UNDER INPUT) ===== */}
     <div

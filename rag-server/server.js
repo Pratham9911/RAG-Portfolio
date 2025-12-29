@@ -1,3 +1,6 @@
+import fs from "fs";
+
+
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -16,14 +19,29 @@ app.get("/", (req, res) => {
 app.post("/ask", async (req, res) => {
   try {
     const { query, mode } = req.body;
+
+    // 🔹 LOG QUERY (minimal, anonymous)
+    const logEntry = {
+      time: new Date().toISOString(),
+      query,
+      mode: mode || "casual"
+    };
+
+    fs.appendFile(
+      "query_logs.jsonl",
+      JSON.stringify(logEntry) + "\n",
+      () => {}
+    );
+
     const answer = await generateAnswer(query, mode || "casual");
-    console.log("answer", answer);
     res.json({ answer });
+
   } catch (err) {
     console.error("SERVER ERROR:", err);
     res.status(500).json({ answer: "Internal server error" });
   }
 });
+
 
 const PORT = process.env.PORT || 4000;
 

@@ -6,6 +6,11 @@ import Section1 from "@/components/section1";
 
 export default function Page() {
 
+  useEffect(() => {
+  fetch(process.env.NEXT_PUBLIC_API_URL)
+    .catch(() => {});
+}, []);
+
   /* ---- reveal on load ---- */
   useEffect(() => {
     document.body.classList.add("loaded");
