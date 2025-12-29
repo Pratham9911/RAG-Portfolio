@@ -47,7 +47,7 @@ Output format:
     temperature: 0
   });
  const raw = response.choices[0].message.content;
-console.log("raw", raw);
+
   try {
     return JSON.parse(raw);
   } catch (err) {

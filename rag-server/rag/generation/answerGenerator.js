@@ -70,9 +70,9 @@ challlenge - don't answer anything not related other then Pratham's info
 
 export async function generateAnswer(query , mode = "casual") {
   // 1. Retrieve relevant chunks
-  console.log("generateAnswer called with mode:", mode);
+  
     const intent = await routeIntent(query);
-    console.log("Routed intent:", intent);
+    
   const categories = intent.categories || [];
 
   // 2️⃣ Retrieval (pure)
@@ -110,6 +110,6 @@ ${query}
     temperature: 0.3
   });
   
-console.log("generateAnswer loaded");
+
   return response.choices[0].message.content;
 }

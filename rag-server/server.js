@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 app.post("/ask", async (req, res) => {
   try {
     const { query, mode } = req.body;
-
+    console.log("Received query:", query, "Mode:", mode);
     // 🔹 LOG QUERY (minimal, anonymous)
     const logEntry = {
       time: new Date().toISOString(),
@@ -42,9 +42,17 @@ app.post("/ask", async (req, res) => {
   }
 });
 
+app.get("/logs", (req, res) => {
+  fs.readFile("query_logs.jsonl", "utf-8", (err, data) => {
+    if (err) return res.send("No logs yet");
+    res.type("text").send(data);
+  });
+});
+
 
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(`RAG server running on port ${PORT}`);
 });
+
