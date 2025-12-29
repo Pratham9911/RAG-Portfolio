@@ -57,6 +57,7 @@ export default function AiInput() {
   const [input, setInput] = useState("");
   const [mode, setMode] = useState("casual");
   const [loading, setLoading] = useState(false);
+const [showIntro, setShowIntro] = useState(false);
 
  
 const [modeOpen, setModeOpen] = useState(false);
@@ -80,13 +81,37 @@ useEffect(() => {
       setAgentStatus("offline");
     });
 
-  // If still not resolved after a short time → waking up
   setTimeout(() => {
     if (!resolved) {
       setAgentStatus("waking");
     }
   }, 3000);
 }, []);
+
+ useEffect(() => {
+  const seen = localStorage.getItem("ai_intro_seen");
+  if (!seen) {
+    setShowIntro(true);
+  }
+}, []);
+
+function handleIntroClose() {
+  localStorage.setItem("ai_intro_seen", "true");
+  setShowIntro(false);
+}
+
+const [showModeHint, setShowModeHint] = useState(false);
+useEffect(() => {
+  const seen = localStorage.getItem("mode_hint_seen");
+  if (!seen) {
+    setShowModeHint(true);
+  }
+}, []);
+
+function closeModeHint() {
+  localStorage.setItem("mode_hint_seen", "true");
+  setShowModeHint(false);
+}
 
   const chatRef = useRef(null);
   const textareaRef = useRef(null);
@@ -156,6 +181,85 @@ useEffect(() => {
 
   return (
   <main className="min-h-screen bg-black text-white relative">
+{showIntro && (
+  <div
+    className="
+      fixed inset-0 z-[100]
+      flex items-center justify-center px-4
+      bg-black/2
+      backdrop-blur-sm
+      animate-fadeIn
+    "
+  >
+    <div
+      className="
+        w-full max-w-md
+        rounded-xl
+        bg-gradient-to-b from-zinc-900/90 to-zinc-950/95
+        backdrop-blur-xl
+        border border-white/20
+        shadow-[0_30px_80px_rgba(0,0,0,0.8)]
+        px-6 py-5
+        text-zinc-100
+        animate-scaleIn
+      "
+    >
+      <h2
+        className="
+          text-[14px]
+          font-semibold
+          tracking-wide
+          text-zinc-200
+          mb-2
+        "
+      >
+        About this AI Agent
+      </h2>
+
+      <p
+        className="
+          text-[13px]
+          leading-relaxed
+          text-zinc-400
+          font-light
+        "
+      >
+        This <span className="font-medium text-zinc-100">AI agent</span> is designed to
+        answer <span className="font-medium text-zinc-200">professional and portfolio-related</span>{" "}
+        questions about{" "}
+        <span className="font-medium text-white">Pratham Tiwari</span>.
+        <br /><br />
+        It focuses on{" "}
+        <span className="font-medium text-zinc-200">
+          projects, skills, achievements
+        </span>, and technical journey.
+        Responses outside this scope may be limited or inaccurate.
+      </p>
+
+      <div className="mt-5 flex justify-end">
+        <button
+          onClick={handleIntroClose}
+          className="
+            px-4 py-1.5
+            rounded-md
+            text-[12px]
+            font-bold
+            hover:text-white
+            hover:bg-blue-900
+            bg-white/80
+            text-black
+            active:scale-[0.98]
+            transition-all duration-200
+            focus:outline-none focus:ring-2 focus:ring-blue-500/40
+          "
+        >
+          I understand
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
     {/* ===== TOP LEFT AGENT HEADER (HIDDEN ON MOBILE) ===== */}
     <div className="hidden md:flex fixed top-20 left-6 z-50">
@@ -265,6 +369,7 @@ useEffect(() => {
   bg-black border-t border-white/10
   pb-[env(safe-area-inset-bottom)]"
 >
+  
   {/* INPUT BAR */}
   <div className="max-w-3xl mx-auto px-4 pt-4">
     <div
@@ -272,12 +377,13 @@ useEffect(() => {
       bg-black border border-white/20
       rounded-full px-3 py-2"
     >
+      
       {/* MODE DROPDOWN */}
       <div className="relative">
         <button
           disabled={loading}
           onClick={() => setModeOpen(v => !v)}
-          className="flex items-center gap-1 px-2 py-1 text-xs
+          className="flex items-center gap-1 px-2 py-1 text-sm
             text-white/80 hover:text-white
             disabled:opacity-40"
         >
@@ -293,11 +399,56 @@ useEffect(() => {
             );
           })()}
         </button>
+{showModeHint && (
+  <div className="absolute bottom-full mb-6 left-1/2 -translate-x-1/2 z-50">
+    <div
+      className="
+        relative
+        bg-black/70 backdrop-blur-sm
+        border border-white/25
+        rounded-lg
+        px-5 py-4
+        shadow-2xl
+        text-[13px]
+        text-white
+        whitespace-nowrap
+        overflow-visible
+      "
+    >
+      {/* CONTENT */}
+      <div className="flex flex-col items-center gap-3">
+        <span className="text-white/90">
+          Try out modes
+        </span>
+
+        <button
+          onClick={closeModeHint}
+          className="
+            px-4 py-1.5
+            rounded-md
+            bg-white
+            text-black
+            text-[11px]
+            font-semibold
+            hover:bg-gray-200
+            active:scale-[0.98]
+            transition
+          "
+        >
+          Okay
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
 
         {/* DROPDOWN */}
         {modeOpen && !loading && (
           <div
-            className="absolute bottom-full mb-2 left-0
+            className="absolute bottom-full mb-2 right-0
             bg-black border border-white/20
             rounded-xl shadow-lg overflow-hidden"
           >

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import Section1 from "@/components/section1";
-
+import Footer from "@/components/Footer";
 export default function Page() {
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function Page() {
 
       {/* ================= TERMINAL + STACK ================= */}
       <Section1 />
-
+      <Footer />
       {/* animations */}
       <style jsx global>{`
         .animate-fadeUp {
