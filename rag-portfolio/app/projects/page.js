@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import Climashield from "./components/Climashield";
+import InfinityAR from "./components/InfinityAR";
+import Footer from "@/components/Footer";
 export default function Project() {
   const videoRef = useRef(null);
   const [videos, setVideos] = useState([]);
@@ -32,51 +34,48 @@ export default function Project() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="bg-black text-white">
 
-      {/* Background Video */}
-      {currentVideo && (
-        <video
-          ref={videoRef}
-          key={currentVideo}
-          src={currentVideo}
-          autoPlay
-          muted
-          playsInline
-          onEnded={playNext}
-          className="absolute inset-0 h-full w-full object-cover "
-        />
-      )}
+      {/* ================= HERO / LANDING ================= */}
+      <section className="relative h-screen overflow-hidden">
+        
+        {/* Background Video */}
+        {currentVideo && (
+          <video
+            ref={videoRef}
+            key={currentVideo}
+            src={currentVideo}
+            autoPlay
+            muted
+            playsInline
+            onEnded={playNext}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
 
-      {/* Foreground */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center">
-        <div className="text-center space-y-6 px-4">
+        {/* Foreground */}
+        <div className="relative z-10 h-full flex items-end">
+          <div className="px-6 lg:px-16 pb-16 max-w-xl">
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-wide">
+              Projects
+            </h1>
 
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-wide">
-            Pratham Tiwari
-          </h1>
-
-          <p className="text-xs tracking-widest text-gray-400 uppercase">
-            AI • Systems • Space
-          </p>
-
-          <p className="max-w-md mx-auto text-gray-300 text-base">
-            Turning curiosity into intelligent systems.
-          </p>
-
-          <div className="mt-10 flex justify-center">
-            <input
-              type="text"
-              placeholder="Ask anything about me…"
-              className="w-80 md:w-96 px-4 py-3 bg-transparent border border-gray-700 rounded-md text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gray-400"
-            />
+            <p className="mt-3 text-sm md:text-base text-gray-300 leading-relaxed">
+              Systems I’ve built to solve real problems.
+            </p>
           </div>
-
         </div>
-      </div>
+      </section>
+
+      {/* ================= PROJECT SECTIONS ================= */}
+      <section className="relative z-10 ">
+        <Climashield />
+        <InfinityAR />
+      </section>
+     <Footer />
 
     </main>
   );

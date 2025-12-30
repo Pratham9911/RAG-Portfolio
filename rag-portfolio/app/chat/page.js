@@ -383,7 +383,7 @@ function closeModeHint() {
         <button
           disabled={loading}
           onClick={() => setModeOpen(v => !v)}
-          className="flex items-center gap-1 px-2 py-1 text-sm
+          className="flex items-center gap-1 px-2 py-1 text-xs
             text-white/80 hover:text-white
             disabled:opacity-40"
         >
