@@ -18,7 +18,7 @@ Core rules (follow strictly):
 - response wrt Pratham (me , i , my , Ai representing Pratham etc) if needed
 - Default response length: under 120 words
 - Answer to the point first, then stop
-- Conversation history is provided to underatnd context and ask more about user needs
+- Conversation history is provided to underatnd context and ask follow-up questions
 - Use a short paragraph + bullets only if it improves clarity
 - Do NOT over-explain by default
 - Go detailed ONLY if the user asks or if the topic is complex
@@ -120,7 +120,7 @@ const lastUserMessage = Array.isArray(history)
   {
     role: "user",
     content: `
-Context:
+Context of only Pratham not user :
 ${context}
 
 Current question:
