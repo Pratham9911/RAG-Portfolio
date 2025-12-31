@@ -11,6 +11,7 @@ import {
   ArrowUp ,
   ChevronDown, Zap, Code
 } from "lucide-react";
+import { getHistory, saveHistory } from "./utils/chatHistory";
 
 /* ================= FAQ BUTTONS ================= */
 const faqs = [
@@ -58,10 +59,33 @@ export default function AiInput() {
   const [mode, setMode] = useState("casual");
   const [loading, setLoading] = useState(false);
 const [showIntro, setShowIntro] = useState(false);
+const [history, setHistory] = useState([]);
 
  
 const [modeOpen, setModeOpen] = useState(false);
 const [agentStatus, setAgentStatus] = useState("waking");
+
+
+useEffect(() => {
+  const stored = getHistory();
+
+  if (stored.length === 2) {
+    setHistory(stored);
+    setMessages([
+      { role: "user", text: stored[0].content },
+      { role: "ai", text: stored[1].content }
+    ]);
+  } else {
+    setMessages([
+      {
+        role: "ai",
+        text:
+          "Hello! I am **Pratham's personalized AI assistant**.\n\nAsk me anything about his skills, projects, or experience."
+      }
+    ]);
+  }
+}, []);
+
 
 useEffect(() => {
   let resolved = false;
@@ -133,44 +157,60 @@ function closeModeHint() {
   }, [input]);
 
   async function send(queryText) {
-    if (!queryText.trim() || loading) return;
+  if (!queryText.trim() || loading) return;
 
-    setMessages(prev => [...prev, { role: "user", text: queryText }]);
-    setInput("");
-    setLoading(true);
+  setMessages(prev => [...prev, { role: "user", text: queryText }]);
+  setInput("");
+  setLoading(true);
 
-    try {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/ask`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: queryText, mode })
-    }
-  );
+  let answer = "";
 
-      const data = await res.json();
-      setMessages(prev => [...prev, { role: "ai", text: "" }]);
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/ask`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: queryText,
+          mode,
+          history // ✅ SEND MEMORY
+        })
+      }
+    );
 
-      typeText(
-        data.answer || "No response.",
-        typed => {
-          setMessages(prev => {
-            const copy = [...prev];
-            copy[copy.length - 1].text = typed;
-            return copy;
-          });
-        },
-        () => setLoading(false)
-      );
-    } catch {
-      setLoading(false);
-      setMessages(prev => [
-        ...prev,
-        { role: "ai", text: "Something went wrong." }
-      ]);
-    }
+    const data = await res.json();
+    answer = data.answer || "No response.";
+
+    setMessages(prev => [...prev, { role: "ai", text: "" }]);
+
+    typeText(
+      answer,
+      typed => {
+        setMessages(prev => {
+          const copy = [...prev];
+          copy[copy.length - 1].text = typed;
+          return copy;
+        });
+      },
+      () => setLoading(false)
+    );
+
+  } catch {
+    answer = "Something went wrong.";
+    setMessages(prev => [...prev, { role: "ai", text: answer }]);
+    setLoading(false);
+  } finally {
+    // ✅ UPDATE MEMORY STATE (ONLY LAST TURN)
+    const newHistory = [
+      { role: "user", content: queryText },
+      { role: "assistant", content: answer }
+    ];
+
+    setHistory(newHistory);
+    saveHistory(queryText, answer); // sessionStorage
   }
+}
 
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) {

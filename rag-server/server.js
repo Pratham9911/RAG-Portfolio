@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 
 app.post("/ask", async (req, res) => {
   try {
-    const { query, mode } = req.body;
-    console.log("Received query:", query, "Mode:", mode);
+    const { query, mode , history} = req.body;
+    // console.log("Received query:", query, "Mode:", mode , "\nHistory:", history);
     // 🔹 LOG QUERY (minimal, anonymous)
     const logEntry = {
       time: new Date().toISOString(),
@@ -33,7 +33,7 @@ app.post("/ask", async (req, res) => {
       () => {}
     );
 
-    const answer = await generateAnswer(query, mode || "casual");
+    const answer = await generateAnswer(query, mode || "casual" , history || []);
     res.json({ answer });
 
   } catch (err) {

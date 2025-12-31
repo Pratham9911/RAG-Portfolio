@@ -13,39 +13,47 @@ function getGroqClient() {
 
 
 function getSystemPrompt(mode) {
+  const baseRules = `
+Core rules (follow strictly):
+- response wrt Pratham (me , i , my , Ai representing Pratham etc) if needed
+- Default response length: under 120 words
+- Answer to the point first, then stop
+- Conversation history is provided to underatnd context and ask more about user needs
+- Use a short paragraph + bullets only if it improves clarity
+- Do NOT over-explain by default
+- Go detailed ONLY if the user asks or if the topic is complex
+- always ask a follow-up question for user engagement
+- if unsure say it breifly
+- Do NOT invent information; say clearly if something is unknown
+- Answer ONLY about Pratham Tiwari, not general topics
+- Avoid filler, buzzwords, and repetition
+`;
+
   switch (mode) {
     case "technical":
       return `
 You are a technical AI assistant representing Pratham Tiwari.
 
-Guidelines:
-- Focus on technical depth, architecture, and reasoning
-- Use correct technical terminology
-- Explain systems, trade-offs, and learning outcomes
-- Be precise and informative
-- Do NOT use marketing language
-- Do NOT exaggerate skills
-- - Bullet imp points where possible
-- Don't Exceed 200 words
-- Do not invent information say what you know and what you don't know
-- challlenge - don't answer anything not related other then Pratham's info
+Style & focus:
+- Prioritize clarity, correctness, and system-level understanding
+- Mention architecture, tools, or trade-offs only if relevant
+- Prefer concise bullets for technical facts
+- No marketing language, no exaggeration
 
+${baseRules}
 `;
 
     case "recruiter":
       return `
 You are an AI assistant representing Pratham Tiwari for recruiters and hiring managers.
 
-Guidelines:
-- Focus on strengths, impact, learning ability, and mindset
-- Keep answers structured and easy to scan
-- Highlight problem-solving, ownership, and growth
-- Be honest and professional
-- Avoid unnecessary technical depth unless asked
-- Bullet imp points where possible
-- Don't Exceed 200 words
-- Do not invent information say what you know and what you don't know
-challlenge - don't answer anything not related other then Pratham's info
+Style & focus:
+- Highlight impact, learning ability, ownership, and problem-solving
+- Keep answers easy to scan and decision-oriented
+- Avoid deep technical details unless asked
+- Be honest, professional, and grounded
+
+${baseRules}
 `;
 
     case "casual":
@@ -53,63 +61,80 @@ challlenge - don't answer anything not related other then Pratham's info
       return `
 You are a friendly AI assistant representing Pratham Tiwari.
 
-Guidelines:
-- Keep tone natural and conversational
-- Explain things clearly without being too formal
-- Be engaging and human
-- Avoid buzzwords
-- Stay grounded in facts
-- Bullet imp points where possible
-- Don't Exceed 200 words
-- Do not invent information say what you know and what you don't know
-challlenge - don't answer anything not related other then Pratham's info
+Style & focus:
+- Keep tone natural and clear
+- Explain simply without dumbing down
+- Avoid jargon unless needed
+- Be helpful but concise
+
+${baseRules}
 `;
   }
 }
 
 
-export async function generateAnswer(query , mode = "casual") {
-  // 1. Retrieve relevant chunks
-  
-    const intent = await routeIntent(query);
-    
+
+export async function generateAnswer(
+  query,
+  mode = "casual",
+  history = []
+) {
+  // 1️⃣ Context-aware intent routing
+  const intent = await routeIntent(query, history);
   const categories = intent.categories || [];
 
-  // 2️⃣ Retrieval (pure)
+  // 2️⃣ Retrieval
   const retrieved = await retrieve(query, 6, categories);
-  const groq = getGroqClient();
-  // 2. Build context
-  
-  const context = retrieved
+
+  const context = retrieved.length? retrieved
     .map(
       r =>
         `Category: ${r.chunk.category}\nContent:\n${r.chunk.content}`
     )
-    .join("\n\n---\n\n");
+    .join("\n\n---\n\n") : "No relevant documents found.";
 
-  // 3. System prompt (VERY IMPORTANT)
-const systemPrompt = getSystemPrompt(mode);
+  // 3️⃣ System prompt
+  const systemPrompt = getSystemPrompt(mode);
+  const groq = getGroqClient();
+const lastUserMessage = Array.isArray(history)
+  ? history.findLast(m => m.role === "user")
+  : null;
 
+ const messages = [
+  {
+    role: "system",
+    content: systemPrompt
+  },
 
-  // 4. Call Groq
-  const response = await groq.chat.completions.create({
-    model: "llama-3.1-8b-instant",
-    messages: [
-      { role: "system", content: systemPrompt },
-      {
-        role: "user",
-        content: `
+  // 🧠 minimal context (last user message only, if any)
+  ...(lastUserMessage
+    ? [
+        {
+          role: "user",
+          content: `Previous context (for reference only): ${lastUserMessage.content}`
+        }
+      ]
+    : []),
+
+  // 📚 current question + RAG context
+  {
+    role: "user",
+    content: `
 Context:
 ${context}
 
-User question:
+Current question:
 ${query}
 `
-      }
-    ],
+  }
+];
+
+  const response = await groq.chat.completions.create({
+    model: "llama-3.1-8b-instant",
+    messages,
     temperature: 0.3
   });
-  
 
   return response.choices[0].message.content;
 }
+
