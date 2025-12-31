@@ -151,11 +151,11 @@ className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide touc
                       <Image
                         src="/assets/climaShield/icon.png"
                         alt="ClimaShield icon"
-                        width={58}
-                        height={58}
+                        width={54}
+                        height={54}
                         className="rounded-xl border border-white/10"
                       />
-                      <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">
+                      <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
                         {slide.title}
                       </h1>
                     </div>

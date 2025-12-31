@@ -8,7 +8,19 @@ export default function Project() {
   const videoRef = useRef(null);
   const [videos, setVideos] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(null);
+  const [showHint, setShowHint] = useState(true);
 
+  useEffect(() => {
+    const hideHint = () => setShowHint(false);
+
+    window.addEventListener("scroll", hideHint, { once: true });
+    window.addEventListener("touchstart", hideHint, { once: true });
+
+    return () => {
+      window.removeEventListener("scroll", hideHint);
+      window.removeEventListener("touchstart", hideHint);
+    };
+  }, []);
   // fetch video list once
   useEffect(() => {
     fetch("/api/videos")
@@ -71,10 +83,51 @@ export default function Project() {
       </section>
 
       {/* ================= PROJECT SECTIONS ================= */}
-      <section className="relative z-10 ">
+      <section className="relative z-10">
+        {/* === UX HINT OVERLAY === */}
+        {showHint && (
+        <div className="pointer-events-none fixed inset-x-0 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-50 flex justify-center">
+  <div className="flex flex-col items-center gap-2 animate-fade-in w-full px-4">
+    
+    {/* Swipe hint */}
+    <div className="flex items-center justify-center gap-3 w-full max-w-xs px-4 py-2 rounded-full bg-black/70 border border-white/10 backdrop-blur text-center">
+      <span className="text-lg">←</span>
+      <span className="text-sm tracking-wide text-white/80 whitespace-nowrap">
+        Swipe to explore project
+      </span>
+      <span className="text-lg">→</span>
+    </div>
+
+    {/* Scroll hint */}
+    <div className="text-xs text-white/60 tracking-widest animate-bounce">
+      Scroll ↓
+    </div>
+  </div>
+</div>
+
+        )}
+
+        {/* === PROJECTS === */}
         <Climashield />
         <InfinityAR />
       </section>
+
+      {/* === Animations === */}
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+      `}</style>
      <Footer />
 
     </main>
