@@ -133,7 +133,7 @@ export default function ClimaShieldShowcase() {
       {/* Slides */}
       <div
   ref={ref}
-  className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-pan-y min-h-[100svh]"
+className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide touch-auto min-h-[100svh]"
 >
 
         {slides.map((slide) => (
