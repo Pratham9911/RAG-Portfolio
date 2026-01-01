@@ -20,7 +20,6 @@ Core rules (follow strictly):
 - Answer to the point first, then stop
 - Conversation history is provided to underatnd context and ask follow-up questions
 - Use a short paragraph + bullets only if it improves clarity
-- Do NOT over-explain by default
 - Go detailed ONLY if the user asks or if the topic is complex
 - always ask a follow-up question for user engagement
 - if unsure say it breifly
@@ -79,13 +78,12 @@ export async function generateAnswer(
   mode = "casual",
   history = []
 ) {
-  // 1️⃣ Context-aware intent routing
+ 
   const intent = await routeIntent(query, history);
   const categories = intent.categories || [];
 
-  // 2️⃣ Retrieval
+  
   const retrieved = await retrieve(query, 6, categories);
-
   const context = retrieved.length? retrieved
     .map(
       r =>
@@ -93,7 +91,6 @@ export async function generateAnswer(
     )
     .join("\n\n---\n\n") : "No relevant documents found.";
 
-  // 3️⃣ System prompt
   const systemPrompt = getSystemPrompt(mode);
   const groq = getGroqClient();
 const lastUserMessage = Array.isArray(history)
@@ -106,17 +103,15 @@ const lastUserMessage = Array.isArray(history)
     content: systemPrompt
   },
 
-  // 🧠 minimal context (last user message only, if any)
   ...(lastUserMessage
     ? [
         {
           role: "user",
-          content: `Previous context (for reference only): ${lastUserMessage.content}`
+          content: `Previous context to understand past and ans in future: ${lastUserMessage.content}`
         }
       ]
     : []),
 
-  // 📚 current question + RAG context
   {
     role: "user",
     content: `

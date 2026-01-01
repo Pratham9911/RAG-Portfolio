@@ -1,4 +1,4 @@
-import { Mail, Github, LinkedinIcon } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Left */}
           <div className="space-y-6">
             <h2 className="text-2xl md:text-3xl font-semibold text-white">
-              Let’s work together 
+              Let’s work together
             </h2>
 
             <p className="text-zinc-300 max-w-md leading-relaxed">
@@ -18,19 +18,27 @@ export default function Footer() {
               I’m always open to discussing new ideas.
             </p>
 
+            {/* Connect Button */}
             <a
               href="mailto:prathamtiwari0123@gmail.com"
-              className="inline-flex items-center gap-3 rounded-lg bg-white text-black px-6 py-3 font-medium hover:bg-zinc-200 transition"
+              className="
+                inline-flex items-center gap-3
+                rounded-xl px-6 py-3 font-medium
+                bg-zinc-900 text-white
+                border border-zinc-700
+                hover:border-white hover:bg-zinc-800
+                transition-all duration-300
+              "
             >
               <Mail size={18} />
-              Contact Me
+              Connect
             </a>
           </div>
 
           {/* Right */}
           <div className="flex flex-col items-start md:items-end gap-6">
             <span className="text-sm uppercase tracking-widest text-zinc-400">
-              Find me online
+              Elsewhere
             </span>
 
             <div className="flex gap-6">
@@ -40,11 +48,17 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="group flex h-14 w-14 items-center justify-center rounded-xl border-2 border-zinc-700 bg-zinc-900 hover:border-white transition"
+                className="
+                  group flex h-14 w-14 items-center justify-center
+                  rounded-xl border-2 border-zinc-700
+                  bg-zinc-900 hover:border-white
+                  transition
+                "
               >
-                <LinkedinIcon
-                  size={26}
-                  className="text-white group-hover:scale-110 transition-transform"
+                <img
+                  src="/linkedin.png"
+                  alt="LinkedIn"
+                  className="h-6 w-6 opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all"
                 />
               </a>
 
@@ -54,11 +68,17 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="group flex h-14 w-14 items-center justify-center rounded-xl border-2 border-zinc-700 bg-zinc-900 hover:border-white transition"
+                className="
+                  group flex h-14 w-14 items-center justify-center
+                  rounded-xl border-2 border-zinc-700
+                  bg-zinc-900 hover:border-white
+                  transition
+                "
               >
-                <Github
-                  size={26}
-                  className="text-white group-hover:scale-110 transition-transform"
+                <img
+                  src="/github.png"
+                  alt="GitHub"
+                  className="h-6 w-6 opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all"
                 />
               </a>
             </div>

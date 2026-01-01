@@ -13,7 +13,6 @@ function getGroqClient() {
 export async function routeIntent(query, history = []) {
   const groq = getGroqClient();
 
-  // 🧠 Build conversation context (last 1–2 turns only)
   const conversationContext = history
     .map(
       m => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`
@@ -64,7 +63,8 @@ Output format:
   });
 
   const raw = response.choices[0].message.content;
-console.log("Intent routing response:", raw ,"History", conversationContext);
+  console.log("\nCategories detected:", raw);
+// console.log("Intent routing response:", raw ,"History", conversationContext);
   try {
     return JSON.parse(raw);
   } catch (err) {

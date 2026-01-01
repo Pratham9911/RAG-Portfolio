@@ -35,7 +35,7 @@ app.post("/ask", async (req, res) => {
 
     const answer = await generateAnswer(query, mode || "casual" , history || []);
     res.json({ answer });
-
+    console.log("\nUser query:", query , "\nAnswer." , answer , "Mode:", mode   );
   } catch (err) {
     console.error("SERVER ERROR:", err);
     res.status(500).json({ answer: "Internal server error" });

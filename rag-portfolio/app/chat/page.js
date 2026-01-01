@@ -197,7 +197,7 @@ function closeModeHint() {
     );
 
   } catch {
-    answer = "Something went wrong.";
+    answer = "Assistent Waking Up ,Please Wait...";
     setMessages(prev => [...prev, { role: "ai", text: answer }]);
     setLoading(false);
   } finally {

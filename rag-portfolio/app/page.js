@@ -67,9 +67,9 @@ export default function Page() {
 </button>
 
 
-        <button className="px-6 sm:px-7 py-3 rounded-lg border border-white/20 bg-zinc-900/80 text-white transition-all duration-200 hover:bg-zinc-800 hover:border-white/40 hover:scale-[1.03]">
+        {/* <button className="px-6 sm:px-7 py-3 rounded-lg border border-white/20 bg-zinc-900/80 text-white transition-all duration-200 hover:bg-zinc-800 hover:border-white/40 hover:scale-[1.03]">
           Resume
-        </button>
+        </button> */}
       </div>
     </div>
 
