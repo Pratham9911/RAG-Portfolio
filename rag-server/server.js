@@ -38,7 +38,7 @@ app.post("/ask", async (req, res) => {
     console.log("\nUser query:", query , "\nAnswer." , answer , "Mode:", mode   );
   } catch (err) {
     console.error("SERVER ERROR:", err);
-    res.status(500).json({ answer: "Internal server error" });
+    res.status(500).json({ answer: "server Down" });
   }
 });
 
