@@ -67,14 +67,14 @@ export default function Page() {
 </button>
 
 
-        <a
+        {/* <a
   href="/Pratham_Tiwari.pdf"
   target="_blank"
   rel="noopener noreferrer"
   className="inline-block px-6 sm:px-7 py-3 rounded-lg border border-white/20 bg-zinc-900/80 text-white transition-all duration-200 hover:bg-zinc-800 hover:border-white/40 hover:scale-[1.03]"
 >
   Resume
-</a>
+</a> */}
 
       </div>
     </div>
