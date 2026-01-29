@@ -63,7 +63,7 @@ export default function Page() {
   onClick={() => (window.location.href = "/chat")}
   className="px-8 py-3 rounded-lg font-semibold text-white bg-[length:200%_200%] bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 animate-[gradientFlow_3s_linear_infinite] shadow-[0_0_30px_rgba(99,102,241,0.45)] hover:shadow-[0_0_55px_rgba(99,102,241,0.9),0_0_35px_rgba(168,85,247,0.75)] transition-all duration-200 ease-out hover:scale-[1.04] active:scale-[0.96]"
 >
-  pratham-v2 / ai-agent →
+  pratham-v2 / ai-assistent →
 </button>
 
 
@@ -77,6 +77,19 @@ export default function Page() {
 </a> */}
 
       </div>
+      <p className="mt-3 text-sm sm:text-base text-center lg:text-left">
+  {/* Desktop text */}
+  <span className="hidden sm:inline font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+    Retrieval-Augmented Generation
+  </span>
+
+  {/* Mobile text */}
+  <span className="inline sm:hidden font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+    RAG
+  </span>{" "}
+  
+  <span className="text-zinc-300 font-light italic">Powered assistant</span></p>
+
     </div>
 
     {/* RIGHT IMAGE (DESKTOP ONLY) */}
