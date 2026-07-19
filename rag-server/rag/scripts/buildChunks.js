@@ -51,15 +51,25 @@ if (profile.about) {
 }
 
 // --------- BELIEFS ---------
-if (profile.beliefs) {
+if (profile.resume) {
   chunks.push(
     createChunk(
-      "beliefs",
-      "philosophy",
-      toReadableText(profile.beliefs)
+      "resume",
+      "resume",
+      toReadableText(profile.resume)
     )
   );
 }
+// // --------- BELIEFS ---------
+// if (profile.beliefs) {
+//   chunks.push(
+//     createChunk(
+//       "beliefs",
+//       "philosophy",
+//       toReadableText(profile.beliefs)
+//     )
+//   );
+// }
 
 // --------- EDUCATION ---------
 (profile.education || []).forEach((edu, i) => {

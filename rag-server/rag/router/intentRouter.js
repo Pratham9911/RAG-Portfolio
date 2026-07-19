@@ -23,13 +23,13 @@ export async function routeIntent(query, history = []) {
 You are an intent classifier for Pratham Tiwari's personal AI portfolio.
 
 Allowed categories:
-about, philosophy, education, skills, project, challenge,
+about, resume , education, skills, project, challenge,
 journey, interests, achievement, current_focus,
 future_goals, why_hire_me, work_preferences, contact
 
 Projects:
-- ClimaShield
-- InfinityAR
+- Cortex
+- MirrorAI
 - Rag-Portfolio
 
 Achievements:

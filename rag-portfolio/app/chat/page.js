@@ -41,7 +41,7 @@ function renderMarkdown(text) {
 }
 
 /* ================= TYPING ================= */
-function typeText(fullText, onUpdate, onDone, speed = 14) {
+function typeText(fullText, onUpdate, onDone, speed = -1) {
   let i = 0;
   const interval = setInterval(() => {
     onUpdate(fullText.slice(0, i + 1));
