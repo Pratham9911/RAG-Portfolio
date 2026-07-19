@@ -40,19 +40,6 @@ function renderMarkdown(text) {
   return { __html: html };
 }
 
-/* ================= TYPING ================= */
-function typeText(fullText, onUpdate, onDone, speed = -1) {
-  let i = 0;
-  const interval = setInterval(() => {
-    onUpdate(fullText.slice(0, i + 1));
-    i++;
-    if (i >= fullText.length) {
-      clearInterval(interval);
-      onDone?.();
-    }
-  }, speed);
-}
-
 export default function AiInput() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -182,19 +169,8 @@ function closeModeHint() {
     const data = await res.json();
     answer = data.answer || "No response.";
 
-    setMessages(prev => [...prev, { role: "ai", text: "" }]);
-
-    typeText(
-      answer,
-      typed => {
-        setMessages(prev => {
-          const copy = [...prev];
-          copy[copy.length - 1].text = typed;
-          return copy;
-        });
-      },
-      () => setLoading(false)
-    );
+    setMessages(prev => [...prev, { role: "ai", text: answer }]);
+    setLoading(false);
 
   } catch {
     answer = "Assistent Waking Up ,Please Wait...";
